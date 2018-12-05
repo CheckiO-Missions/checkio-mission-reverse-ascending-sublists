@@ -1,20 +1,17 @@
 <!-- Describe task in general -->
 
 <p>
-    Sum two passed ints
+    Create and return a new {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %} that contains the same elements as the argument {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %}  items , but reversing the order of the elements inside every maximal  strictly ascending sublist. This function should not modify the contents of the original {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %}.
 </p>
 
-<p style="text-align: center;">
-    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
-</p>
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <strong>Input: </strong> {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %}
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    <strong>Output: </strong> {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %} 
 </p>
 
 
@@ -25,12 +22,12 @@
     </p>
 
 {% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">sumTwo(2, 3) == 5
-sumTwo(5, 7) == 12
+<pre class="brush: javascript">reverseAscending([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]
+reverseAscending([5, 7, 10, 4, 2, 7, 8, 1, 3]) == [10, 7, 5, 4, 8, 7, 2, 3, 1]
 </pre>
 {% else %}
-<pre class="brush: python">sum_two(2, 3) == 5
-sum_two(5, 7) == 12
+<pre class="brush: python">reverse_ascending([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]
+reverse_ascending([5, 7, 10, 4, 2, 7, 8, 1, 3]) == [10, 7, 5, 4, 8, 7, 2, 3, 1]
 </pre>
 {% endif %}
 </div>
@@ -45,5 +42,5 @@ sum_two(5, 7) == 12
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>both given ints should be between -1000 and 1000</i>
+    <i>Iterable contains only ints</i>
 </p>
