@@ -1,6 +1,6 @@
 "use strict";
 
-function reverseAscending(a) {
+function reverseAscending(items) {
 
     // your code here
     return 0;

@@ -1,4 +1,4 @@
-def reverse_ascending(a):
+def reverse_ascending(items):
     # your code here
     return None
 
