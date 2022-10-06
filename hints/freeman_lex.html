@@ -13,15 +13,15 @@
 </div>
 <div class="question-answer">
     <div class="question">
-        What should I start from?
+        Sounds interesting. What should I start from?
     </div>
     <div class="answer">
         <p>
-            Let's declare a variable: <b class="code">result</b> with the initial
+            Let's declare a variable <b class="code">result</b> with the initial
             value of empty list - this list you are going to fill with values and
             return at the end. Later you will also need a variable <b class="code">point</b>
             - the index of <b class="code">result</b>, where
-            you will put your values. Although, type hint is not obligatory,
+            you will put your values. Although type hint is not obligatory,
             let's add it for the variable this time.
         </p>
         <pre class="brush: python">
@@ -56,18 +56,34 @@ for elem in items:
         <p>
             This step needs some explanation. Since each your ascending sequence
             should be reversed, you insert every bigger <b class="code">elem</b>
-            at the same <b class="code">point</b> - the very first index of current subsequence.
+            at the same <b class="code">point</b> position - the very first index of current subsequence.
             This is already expressed in code.
         </p>
         <pre class="brush: python">
 result.insert(point, elem)        
         </pre>
         <p>
-            You need to change <b class="code">point</b> if the current subsequence ends (current
+            For example, if your initial list is <b class="code">[1, 2, 3]</b>,
+                <b class="code">result</b> is empty, so <b class="code">point</b>
+                is <b class="code">0</b>. The algorithm will do the following.
+        </p>
+        <div class="output">
+            <p></p>
+            <pre>
+indexes  0  1  2
+steps
+1       [1]
+2       [2, 1]
+3       [3, 2, 1] 
+            </pre>
+        </div>
+        <p>
+            You need to change <b class="code">point</b> value if the current subsequence ends (current
             <b class="code">elem</b> is not bigger than the first (<b class="code">point</b>) element of current
             subsequence). In this case you start the new subsequence at the end
             of the whole list (insert current <b class="code">elem</b> as the last
-            element of the list).
+            element of the list) and insert bigger <b class="code">elem</b> of 
+            new subsequence into new <b class="code">point</b>.
         </p>
     </div>
 </div>
@@ -95,7 +111,7 @@ for elem in items:
         So, how my final solution should look like?
     </div>
     <div class="answer">
-        <p>You just need to wrap your code in function expression and return <b class="code">result</b></p>
+        <p>You just need to wrap your code in function expression and return <b class="code">result</b>.</p>
         <p>Here is the whole solution:</p>
         <pre class="brush: python">
 def reverse_ascending(items: list[int]) -> Iterable[int]:
@@ -117,13 +133,35 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
     </div>
     <div class="answer">
         <p>Sure, grab it!</p>
-        <p></p>
+        <p>Since the function may return any <b class="code">Iterable</b>, here is the generator.
+            Elements are added into <b class="code">buffer</b> until the sequence keeps ascending order, 
+            then they yield from reversed <b class="code">buffer</b>.
+        </p>
         <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
 
+    buffer = []
+    for i, el in enumerate(items):
+        buffer.append(el)
+        if i == len(items)-1 or el >= items[i + 1]:
+            yield from reversed(buffer)
+            buffer = []
         </pre>
-        <p></p>
+        <p>This interesting solution uses the order direction checking as "switcher"
+            of adding to the <b class="code">result</b> list (if order becomes descending, the buffer sequence
+            is added to <b class="code">result</b>) and clearing the buffer sequence - if order
+            becomes descending, the buffer is cleared and current element added.
+        </p>
         <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
 
+    result, last = [], [data[0]] if data else []
+    for i in data[1:]:
+        is_ascending = i > last[-1]
+        result += last[::-1]*(not is_ascending)
+        last = last*is_ascending+[i]
+
+    return result+last[::-1]    
         </pre>
         <p>Click "Best solutions" at mission menu and see a lot of other
         interesting solutions!</p>
