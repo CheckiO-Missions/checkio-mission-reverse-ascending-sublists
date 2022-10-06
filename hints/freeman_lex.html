@@ -1,0 +1,140 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>The general idea of solution I offer you is to iterate over the initial
+            list and insert each value in the right place of new list - at the 
+            beginning of current strictly ascending subsequence or at the end of the
+            whole list to start the next subsequence.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Let's declare a variable: <b class="code">result</b> with the initial
+            value of empty list - this list you are going to fill with values and
+            return at the end. Later you will also need a variable <b class="code">point</b>
+            - the index of <b class="code">result</b>, where
+            you will put your values. Although, type hint is not obligatory,
+            let's add it for the variable this time.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Let's get closer to business!) What to do next?
+    </div>
+    <div class="answer">
+        <p>Iterate over the initial list using
+            <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>.
+            Inside the loop insert current element of the initial list at
+            <b class="code">point</b> index, I told you previous hint.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    ...
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>How to define the value of <b class="code">point</b> - 
+            where I should correctly insert each <b class="code">elem</b>?</p>
+    </div>
+    <div class="answer">
+        <p>
+            This step needs some explanation. Since each your ascending sequence
+            should be reversed, you insert every bigger <b class="code">elem</b>
+            at the same <b class="code">point</b> - the very first index of current subsequence.
+            This is already expressed in code.
+        </p>
+        <pre class="brush: python">
+result.insert(point, elem)        
+        </pre>
+        <p>
+            You need to change <b class="code">point</b> if the current subsequence ends (current
+            <b class="code">elem</b> is not bigger than the first (<b class="code">point</b>) element of current
+            subsequence). In this case you start the new subsequence at the end
+            of the whole list (insert current <b class="code">elem</b> as the last
+            element of the list).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to write this in code?
+    </div>
+    <div class="answer">
+        <p>
+            Again in short, if the current <b class="code">elem</b> is not bigger 
+            than the <b class="code">point</b> element, (or the <b class="code">result</b> is empty)
+            set the <b class="code">point</b> to the end of the list.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    if not result or elem <= result[point]:
+        point = len(result)
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>You just need to wrap your code in function expression and return <b class="code">result</b></p>
+        <p>Here is the whole solution:</p>
+        <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result: list[int] = []
+    for elem in items:
+        if not result or elem <= result[point]:
+            point = len(result)
+        result.insert(point, elem)
+
+    return result
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p></p>
+        <pre class="brush: python">
+
+        </pre>
+        <p></p>
+        <pre class="brush: python">
+
+        </pre>
+        <p>Click "Best solutions" at mission menu and see a lot of other
+        interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it!
+    </div>
+</div>
+</body>

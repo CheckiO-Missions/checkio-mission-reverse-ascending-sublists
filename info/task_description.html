@@ -1,40 +1,35 @@
 <!-- Describe task in general -->
 
 <p>
-    Create and return a new {% if interpreter.slug == "js-node" %}Array{% else %}iterable{% endif %} that contains the same elements as the argument {% if interpreter.slug == "js-node" %}Array{% else %}iterable{% endif %}  items, but with the reversed order of the elements inside every maximal strictly ascending sublist. This function should not modify the contents of the original {% if interpreter.slug == "js-node" %}Array{% else %}iterable{% endif %}.
+    Create and return a new {% if is_js %}Array{% else %}Iterable{% endif %} that
+    contains the same elements as the argument {% if is_js %}Array{% else %}list{% endif %} <b class="code">items</b>,
+    but with the reversed order of the elements inside every maximal strictly ascending subsequence.
+    This function should not modify the contents of the original {% if is_js %}Array{% else %}Iterable{% endif %}.
 </p>
 
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %}
+    <strong>Input:</strong> {% if is_js %}Array of numbers{% else %}List of integers{% endif %}.
 </p>
 
 <p>
-    <strong>Output: </strong> {% if interpreter.slug == "js-node" %}Array{% else %}Iterable{% endif %} 
+    <strong>Output:</strong> {% if is_js %}Array of numbers{% else %}Iterable of integers{% endif %}.
 </p>
 
 
 <!-- Put some usage examples -->
 <div class="for_info_only">
     <p>
-        <strong>Example:</strong>
+        <strong>Examples:</strong>
     </p>
 
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">reverseAscending([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]
-reverseAscending([5, 7, 10, 4, 2, 7, 8, 1, 3]) == [10, 7, 5, 4, 8, 7, 2, 3, 1]
-</pre>
-{% else %}
-<pre class="brush: python">reverse_ascending([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]
-reverse_ascending([5, 7, 10, 4, 2, 7, 8, 1, 3]) == [10, 7, 5, 4, 8, 7, 2, 3, 1]
-</pre>
-{% endif %}
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 <!-- Here you can explain how it can be used in development and what is usage of this. -->
 <!-- The section is optional -->
 <p class="for_info_only">
-    <strong>How it is used: </strong>
+    <strong>How it is used:</strong>
     <i>(math is used everywhere)</i>
 </p>
 
@@ -42,7 +37,7 @@ reverse_ascending([5, 7, 10, 4, 2, 7, 8, 1, 3]) == [10, 7, 5, 4, 8, 7, 2, 3, 1]
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>Iterable contains only ints</i>
+    <i>{% if is_js %}Array{% else %}List{% endif %} contains only {% if is_js %}numbers{% else %}integers{% endif %}.</i>
 </p>
 
 <p><i>The mission was taken from Python CCPS 109 Fall 2018. It’s being taught for Ryerson Chang School of Continuing Education by <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>

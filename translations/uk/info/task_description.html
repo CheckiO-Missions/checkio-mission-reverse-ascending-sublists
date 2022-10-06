@@ -1,0 +1,44 @@
+<!-- Describe task in general -->
+
+<p>
+    Створи і поверни новий {% if is_js %}масив{% else %}Ітеративний об'єкт{% endif %},
+    який містить ті ж елементи, що і вхідний {% if is_js %}масив{% else %}список{% endif %}
+     <b class="code">items</b>, але зі зворотним порядком елементів всередині кожної максимальної 
+     строго зростаючої сукупності. Ця функція не повинна змінювати вміст вхідного
+     {% if is_js %}масива{% else %}списка{% endif %}.
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Вхідні дані:</strong> {% if is_js %}Масив{% else %}Список{% endif %} цілих чисел.
+</p>
+
+<p>
+    <strong>Вихідні дані:</strong> {% if is_js %}Масив{% else %}Ітеративний об'єкт{% endif %} цілих чисел.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Приклади:</strong>
+    </p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+<!-- Here you can explain how it can be used in development and what is usage of this. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Як це використовується: </strong>
+    <i>(математика використовується скрізь)</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Передумова:</strong>
+    <i>{% if is_js %}Масив{% else %}Список{% endif %} містить лише цілі числа.</i>
+</p>
+
+<p><i>Ця місія взята з курсу Python CCPS 109 осені 2018. Він викладався в Ryerson Chang School of Continuing Education <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>
+
