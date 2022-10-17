@@ -1,10 +1,11 @@
 <body data-author="freeman_lex">
 <div class="question-answer">
     <div class="question">
-        Я уявлення не маю, як розв'язати цю місію.
+        <i>Я уявлення не маю, як розв'язати цю місію.</i>
     </div>
     <div class="answer">
-        <p> Загальна ідея розв'язку, який я тобі пропоную, у тому, щоб проходити
+        <p>
+            Загальна ідея розв'язку, який я тобі пропоную, у тому, щоб проходити
             початковим списком і вставляти кожне значення звідки у правильну позицію
             в новому списку - на початку поточної строго зростаючої підсукупності або
             в самому кінці всього списку для початку нової підсукупності.
@@ -13,7 +14,7 @@
 </div>
 <div class="question-answer">
     <div class="question">
-        Звучить цікаво. З чого мені почати?
+        <i>Звучить цікаво. З чого мені почати?</i>
     </div>
     <div class="answer">
         <p>
@@ -31,13 +32,11 @@ result: list[int] = []
 </div>
 <div class="question-answer">
     <div class="question">
-        Давай перейдемо ближче до справи!) Що робити далі?
+        <i>Давай перейдемо ближче до справи!) Що робити далі?</i>
     </div>
     <div class="answer">
-        <p>Проходь по початковому списку, використовуючи
-            <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">цикл for</a>.
-            Всередині циклу вставляй поточний елемент початкового списку в позицію
-            <b class="code">point</b>, про яку я казав тобі попередньо.
+        <p>
+            Проходь по початковому списку, використовуючи <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">цикл for</a>. Всередині циклу вставляй поточний елемент початкового списку в позицію <b class="code">point</b>, про яку я казав тобі попередньо.
         </p>
         <pre class="brush: python">
 result: list[int] = []
@@ -49,8 +48,10 @@ for elem in items:
 </div>
 <div class="question-answer">
     <div class="question">
-        <p>Як визначити значення <b class="code">point</b> - 
-            куди я повинен правильно вставляти кожен <b class="code">elem</b>?</p>
+        <p>
+            <i>Як визначити значення <b class="code">point</b> - 
+            куди я повинен правильно вставляти кожен <b class="code">elem</b>?</i>
+        </p>
     </div>
     <div class="answer">
         <p>
@@ -63,10 +64,7 @@ for elem in items:
 result.insert(point, elem)        
         </pre>
         <p>
-            Наприклад, якщо твій початковий список <b class="code">[1, 2, 3]</b>,
-                <b class="code">result</b> порожній, тому <b class="code">point</b>
-                буде <b class="code">0</b>. Вищеописаний алгоритм буде діяти наступним
-                чином.
+            Наприклад, якщо твій початковий список <b class="code">[1, 2, 3]</b>, <b class="code">result</b> порожній, то <b class="code">point</b> буде <b class="code">0</b>. Вищеописаний алгоритм буде діяти наступним чином.
         </p>
         <div class="output">
             <p></p>
@@ -91,7 +89,7 @@ result.insert(point, elem)
 </div>
 <div class="question-answer">
     <div class="question">
-        Як це записати у коді?
+       <i>Як це записати у коді?</i>
     </div>
     <div class="answer">
         <p>
@@ -110,10 +108,12 @@ for elem in items:
 </div>
 <div class="question-answer">
     <div class="question">
-        То як має виглядати моє остаточне рішення?
+        <i>То як має виглядати моє остаточне рішення?</i>
     </div>
     <div class="answer">
-        <p>Тобі лише потрібно обгорнути свій код у вираз функції і повернути <b class="code">result</b>.</p>
+        <p>
+            Тобі лише потрібно обгорнути свій код у вираз функції і повернути <b class="code">result</b>.
+        </p>
         <p>Ось весь розв'язок:</p>
         <pre class="brush: python">
 def reverse_ascending(items: list[int]) -> Iterable[int]:
@@ -130,8 +130,8 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 </div>
 <div class="question-answer">
     <div class="question">
-        Покажи мені більше розв'язків!<br />
-        Адже я хочу стати справжнім Python Ніндзею!
+        <i>Покажи мені більше розв'язків!<br />
+        Адже я хочу стати справжнім Python Ніндзею!</i>
     </div>
     <div class="answer">
         <p>Звісно, тримай!</p>
@@ -165,12 +165,12 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result+last[::-1]    
         </pre>
-        <p>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</p>
+        <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</b></p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Дякую! Тепер я знаю і розумію більше! Все працює як слід!
+        <i>Дякую! Тепер я знаю і розумію більше! Все працює як слід!</i>
     </div>
     <div class="answer">
         Приємно це чути!
