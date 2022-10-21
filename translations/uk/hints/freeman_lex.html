@@ -1,0 +1,179 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>Я уявлення не маю, як розв'язати цю місію.</i>
+    </div>
+    <div class="answer">
+        <p>
+            Загальна ідея розв'язку, який я тобі пропоную, у тому, щоб проходити
+            початковим списком і вставляти кожне значення звідки у правильну позицію
+            в новому списку - на початку поточної строго зростаючої підсукупності або
+            в самому кінці всього списку для початку нової підсукупності.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Звучить цікаво. З чого мені почати?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Давай проголосимо змінну <b class="code">result</b> з початковим значенням
+            у вигляді порожнього списку - цей список ти будеш заповнювати значеннями і
+            повернеш у кінці. Пізніше тобі також знадобиться змінна <b class="code">point</b>
+            - індекс в <b class="code">result</b>, куди ти вставлятимеш свої значення.
+            Хоча використання підказок типу не є обов'язковим, давай цього разу 
+            додамо його до змінної.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Давай перейдемо ближче до справи!) Що робити далі?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Проходь по початковому списку, використовуючи <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">цикл for</a>. Всередині циклу вставляй поточний елемент початкового списку в позицію <b class="code">point</b>, про яку я казав тобі попередньо.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    ...
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            <i>Як визначити значення <b class="code">point</b> - 
+            куди я повинен правильно вставляти кожен <b class="code">elem</b>?</i>
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Цей крок потребує деяких пояснень. Оскільки кожна твоя зростаюча підсукупність
+            повинна бути обернена, ти вставляєш кожен більший <b class="code">elem</b>
+            в ту саму позицію <b class="code">point</b> - самий перший індекс поточної підсукупності.
+            Це вже відображено в коді.
+        </p>
+        <pre class="brush: python">
+result.insert(point, elem)        
+        </pre>
+        <p>
+            Наприклад, якщо твій початковий список <b class="code">[1, 2, 3]</b>, <b class="code">result</b> порожній, то <b class="code">point</b> буде <b class="code">0</b>. Вищеописаний алгоритм буде діяти наступним чином.
+        </p>
+        <div class="output">
+            <p></p>
+            <pre>
+індекси  0  1  2
+кроки
+1       [1]
+2       [2, 1]
+3       [3, 2, 1] 
+            </pre>
+        </div>
+        <p>
+            Тобі потрібно змінити значення <b class="code">point</b>, якщо поточна
+            підсукупність завершена (поточний <b class="code">elem</b> не більший
+            за перший (<b class="code">point</b>) елемент поточної підсукупності).
+            У цьому випадку ти розпочинаєш нову підсукупність в кінці всього списку
+            (вставляєш поточний <b class="code">elem</b> як останній елемент списку)
+            і далі вже більші числа нової підсукупності вставляєш в новий <b class="code">point</b>.
+
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+       <i>Як це записати у коді?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Це раз коротко, якщо поточний <b class="code">elem</b> не більший за
+             <b class="code">point</b>, (або <b class="code">result</b> порожній)
+            встановлюй <b class="code">point</b> на кінець списку.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    if not result or elem <= result[point]:
+        point = len(result)
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>То як має виглядати моє остаточне рішення?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Тобі лише потрібно обгорнути свій код у вираз функції і повернути <b class="code">result</b>.
+        </p>
+        <p>Ось весь розв'язок:</p>
+        <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result: list[int] = []
+    for elem in items:
+        if not result or elem <= result[point]:
+            point = len(result)
+        result.insert(point, elem)
+
+    return result
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Покажи мені більше розв'язків!<br />
+        Адже я хочу стати справжнім Python Ніндзею!</i>
+    </div>
+    <div class="answer">
+        <p>Звісно, тримай!</p>
+        <p>Оскільки функція може повертати будь-який ітеративний об'єкт, ось генератор.
+            Елементи додаються в список <b class="code">buffer</b> поки зберігається зростаючий порядок, 
+            після цього вони видаються звідти в зворотному порядку.
+        </p>
+        <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    buffer = []
+    for i, el in enumerate(items):
+        buffer.append(el)
+        if i == len(items)-1 or el >= items[i + 1]:
+            yield from reversed(buffer)
+            buffer = []
+        </pre>
+        <p>Цей цікавий розв'язок використовує перевірку порядку сортування як "перемикач"
+            для додавання в список <b class="code">result</b> (якщо порядок стає спадним,
+            підсукупність додається до <b class="code">result</b>) і очищення підсукупності
+            - якщо порядок стає спадним, підсукупність очищається і поточний елемент додається.
+        </p>
+        <pre class="brush: python">
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result, last = [], [data[0]] if data else []
+    for i in data[1:]:
+        is_ascending = i > last[-1]
+        result += last[::-1]*(not is_ascending)
+        last = last*is_ascending+[i]
+
+    return result+last[::-1]    
+        </pre>
+        <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Дякую! Тепер я знаю і розумію більше! Все працює як слід!</i>
+    </div>
+    <div class="answer">
+        Приємно це чути!
+    </div>
+</div>
+</body>
