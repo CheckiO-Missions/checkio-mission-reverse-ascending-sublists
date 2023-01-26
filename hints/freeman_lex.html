@@ -1,11 +1,11 @@
 <body data-author="freeman_lex">
 <div class="question-answer">
     <div class="question">
-        <i>I have no idea how to start solving this mission.</i>
+        <p>I have no idea how to start solving this mission.</p>
     </div>
     <div class="answer">
         <p>
-            The general idea of solution I offer you is to iterate over the initial
+            💡 The general idea of solution I offer you is to iterate over the initial
             list and insert each value in the right place of new list - at the 
             beginning of current strictly ascending subsequence or at the end of the
             whole list to start the next subsequence.
@@ -14,15 +14,16 @@
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>Sounds interesting. What should I start from?</i>
+        <p>
+            Sounds interesting. What should I start from?
+        </p>
     </div>
     <div class="answer">
         <p>
             Let's declare a variable <b class="code">result</b> with the initial
             value of empty list - this list you are going to fill with values and
             return at the end. Later you will also need a variable <b class="code">point</b>
-            - the index of <b class="code">result</b>, where
-            you will put your values. Although type hint is not obligatory,
+            - the index of <b class="code">result</b>, where you will put your values. Although type hint is not obligatory,
             let's add it for the variable this time.
         </p>
         <pre class="brush: python">
@@ -32,13 +33,13 @@ result: list[int] = []
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>Let's get closer to business!) What to do next?</i>
+        <p>
+            Let's get closer to business!) What to do next?
+        </p>
     </div>
     <div class="answer">
-        <p>Iterate over the initial list using
-            <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>.
-            Inside the loop insert current element of the initial list at
-            <b class="code">point</b> index, I told you previous hint.
+        <p>
+            Iterate over the initial list using <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>. Inside the loop insert current element of the initial list at <b class="code">point</b> index, I told you previous hint.
         </p>
         <pre class="brush: python">
 result: list[int] = []
@@ -51,54 +52,43 @@ for elem in items:
 <div class="question-answer">
     <div class="question">
         <p>
-            <i>How to define the value of <b class="code">point</b> - 
-            where I should correctly insert each <b class="code">elem</b>?</i>
+            How to define the value of <b class="code">point</b> - 
+            where I should correctly insert each <b class="code">elem</b>?
         </p>
     </div>
     <div class="answer">
         <p>
             This step needs some explanation. Since each your ascending sequence
             should be reversed, you insert every bigger <b class="code">elem</b>
-            at the same <b class="code">point</b> position - the very first index of current subsequence.
-            This is already expressed in code.
+            at the same <b class="code">point</b> position - the very first index of current subsequence. This is already expressed in code.
         </p>
         <pre class="brush: python">
 result.insert(point, elem)        
         </pre>
         <p>
-            For example, if your initial list is <b class="code">[1, 2, 3]</b>,
-                <b class="code">result</b> is empty, so <b class="code">point</b>
-                is <b class="code">0</b>. The algorithm will do the following.
+            For example, if your initial list is <b class="code">[1, 2, 3]</b>, <b class="code">result</b> is empty, so <b class="code">point</b> is <b class="code">0</b>. The algorithm will do the following.
         </p>
-        <div class="output">
-            <p></p>
-            <pre>
+        <pre>
 indexes  0  1  2
 steps
 1       [1]
 2       [2, 1]
 3       [3, 2, 1] 
-            </pre>
-        </div>
+        </pre>
         <p>
-            You need to change <b class="code">point</b> value if the current subsequence ends (current
-            <b class="code">elem</b> is not bigger than the first (<b class="code">point</b>) element of current
-            subsequence). In this case you start the new subsequence at the end
-            of the whole list (insert current <b class="code">elem</b> as the last
-            element of the list) and insert bigger <b class="code">elem</b> of 
-            new subsequence into new <b class="code">point</b>.
+            You need to change <b class="code">point</b> value if the current subsequence ends (current <b class="code">elem</b> is not bigger than the first (<b class="code">point</b>) element of current subsequence). In this case you start the new subsequence at the end of the whole list (insert current <b class="code">elem</b> as the last element of the list) and insert bigger <b class="code">elem</b> of new subsequence into new <b class="code">point</b>.
         </p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>How to write this in code?</i>
+        <p>
+            How to write this in code?
+        </p>
     </div>
     <div class="answer">
         <p>
-            Again in short, if the current <b class="code">elem</b> is not bigger 
-            than the <b class="code">point</b> element, (or the <b class="code">result</b> is empty)
-            set the <b class="code">point</b> to the end of the list.
+            Again in short, if the current <b class="code">elem</b> is not bigger than the <b class="code">point</b> element, (or the <b class="code">result</b> is empty) set the <b class="code">point</b> to the end of the list.
         </p>
         <pre class="brush: python">
 result: list[int] = []
@@ -111,7 +101,9 @@ for elem in items:
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>So, how my final solution should look like?</i>
+        <p>
+            So, how my final solution should look like?
+        </p>
     </div>
     <div class="answer">
         <p>
@@ -119,6 +111,9 @@ for elem in items:
         </p>
         <p>Here is the whole solution:</p>
         <pre class="brush: python">
+from collections.abc import Iterable
+
+
 def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     result: list[int] = []
@@ -133,17 +128,21 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>Show me more solutions!<br />
-        'Cause I wanna be a real Python Ninnjaa!</i>
+        <p>
+            Show me more solutions!<br />
+            'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </p>
     </div>
     <div class="answer">
         <p>Sure, grab it!</p>
         <p>
             Since the function may return any <b class="code">Iterable</b>, here is the generator.
-            Elements are added into <b class="code">buffer</b> until the sequence keeps ascending order, 
-            then they yield from reversed <b class="code">buffer</b>.
+            Elements are added into <b class="code">buffer</b> until the sequence keeps ascending order, then they yield from reversed <b class="code">buffer</b>.
         </p>
         <pre class="brush: python">
+from collections.abc import Iterable
+
+
 def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     buffer = []
@@ -155,11 +154,13 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
         </pre>
         <p>
             This interesting solution uses the order direction checking as "switcher"
-            of adding to the <b class="code">result</b> list (if order becomes descending, the buffer sequence
-            is added to <b class="code">result</b>) and clearing the buffer sequence - if order
+            of adding to the <b class="code">result</b> list (if order becomes descending, the buffer sequence is added to <b class="code">result</b>) and clearing the buffer sequence - if order
             becomes descending, the buffer is cleared and current element added.
         </p>
         <pre class="brush: python">
+from collections.abc import Iterable
+
+
 def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     result, last = [], [data[0]] if data else []
@@ -170,16 +171,21 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result+last[::-1]    
         </pre>
-        <p><b>Click "Best solutions" at mission menu and see a lot of other
-        interesting solutions!</b></p>
+        <p><b>
+            Click "Best solutions" at mission menu and see a lot of other interesting solutions!
+        </b></p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        <i>Thanks! I know and understand more now! Everything works fine!</i>
+        <p>
+            Thanks! I know and understand more now! Everything works fine!
+        </p>
     </div>
     <div class="answer">
-        Glad to hear it!
+        <p>
+            👍 Glad to hear it!
+        </p>
     </div>
 </div>
 </body>
