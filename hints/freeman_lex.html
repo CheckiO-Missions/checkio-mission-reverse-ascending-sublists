@@ -110,6 +110,7 @@ for elem in items:
             You just need to wrap your code in function expression and return <b class="code">result</b>.
         </p>
         <p>Here is the whole solution:</p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -124,6 +125,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -139,6 +141,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
             Since the function may return any <b class="code">Iterable</b>, here is the generator.
             Elements are added into <b class="code">buffer</b> until the sequence keeps ascending order, then they yield from reversed <b class="code">buffer</b>.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -152,11 +155,13 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
             yield from reversed(buffer)
             buffer = []
         </pre>
+        </div>
         <p>
             This interesting solution uses the order direction checking as "switcher"
             of adding to the <b class="code">result</b> list (if order becomes descending, the buffer sequence is added to <b class="code">result</b>) and clearing the buffer sequence - if order
             becomes descending, the buffer is cleared and current element added.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -171,6 +176,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result+last[::-1]    
         </pre>
+        </div>
         <p><b>
             Click "Best solutions" at mission menu and see a lot of other interesting solutions!
         </b></p>
