@@ -104,6 +104,7 @@ for elem in items:
             Тобі лише потрібно обгорнути свій код у вираз функції і повернути <b class="code">result</b>.
         </p>
         <p>Ось весь розв'язок:</p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -118,6 +119,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -132,6 +134,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
         <p>
             Оскільки функція може повертати будь-який ітеративний об'єкт, ось генератор. Елементи додаються в список <b class="code">buffer</b> поки зберігається зростаючий порядок, після цього вони видаються звідти в зворотному порядку.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -145,9 +148,11 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
             yield from reversed(buffer)
             buffer = []
         </pre>
+        </div>
         <p>
             Цей цікавий розв'язок використовує перевірку порядку сортування як "перемикач" для додавання в список <b class="code">result</b> (якщо порядок стає спадним, підсукупність додається до <b class="code">result</b>) і очищення підсукупності - якщо порядок стає спадним, підсукупність очищається і поточний елемент додається.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 from collections.abc import Iterable
 
@@ -162,6 +167,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
 
     return result+last[::-1]    
         </pre>
+        </div>
         <p><b>
             Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!
         </b></p>
