@@ -1,20 +1,18 @@
-<!-- Describe task in general -->
+r<!-- Describe task in general -->
 
 <p>
-    Create and return a new {% if is_js %}<b class="code">Array</b>{% else %}<b class="code">Iterable</b>{% endif %} that
-    contains the same elements as the argument {% if is_js %}Array{% else %}list{% endif %} <b class="code">items</b>,
-    but with the reversed order of the elements inside every maximal strictly ascending subsequence.
-    This function should not modify the contents of the original {% if is_js %}Array{% else %}list{% endif %}.
+    Create and return a new {% if is_js %}<span translate="repeat">array</span>{% else %}<span translate="repeat">Iterable</span>{% endif %} that contains the same elements as the argument {% if is_js %}<span translate="repeat">array</span>{% else %}<span translate="repeat">list</span>{% endif %} <b class="code">items</b>, but with the reversed order of the elements inside every maximal strictly ascending subsequence.
+    This function should not modify the contents of the original {% if is_js %}<span translate="repeat">array</span>{% else %}<span translate="repeat">list</span>{% endif %}.
 </p>
 
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input:</strong> {% if is_js %}Array of numbers{% else %}List of integers{% endif %}.
+    <strong>Input:</strong> {% if is_js %}<span translate="repeat">Array</span> of <span translate="repeat">numbers</span>{% else %}<span translate="repeat">List</span> of <span translate="repeat">integers</span>{% endif %}.
 </p>
 
 <p>
-    <strong>Output:</strong> {% if is_js %}Array of numbers{% else %}Iterable of integers{% endif %}.
+    <strong>Output:</strong> {% if is_js %}<span translate="repeat">Array</span> of <span translate="repeat">numbers</span>{% else %}<span translate="repeat">List</span> or another <span translate="repeat">Iterable</span> (<span translate="repeat">tuple</span>, <span translate="repeat">iterator</span>, <span translate="repeat">generator</span>) of <span translate="repeat">integers</span>{% endif %}.
 </p>
 
 
@@ -37,8 +35,8 @@
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>{% if is_js %}Array{% else %}List{% endif %} contains only {% if is_js %}numbers{% else %}integers{% endif %}.</i>
+    <i>{% if is_js %}<span translate="repeat">Array</span>{% else %}<span translate="repeat">List</span>{% endif %} contains only {% if is_js %}<span translate="repeat">numbers</span>{% else %}<span translate="repeat">integers</span>{% endif %}.</i>
 </p>
 
-<p><i>The mission was taken from Python CCPS 109 Fall 2018. It’s being taught for Ryerson Chang School of Continuing Education by <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>
+<p><i>The mission was taken from Python CCPS 109 Fall 2018. It’s being taught for Ryerson Chang School of Continuing Education by <a target="_blank" href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>
 
