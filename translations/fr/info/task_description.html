@@ -1,18 +1,18 @@
 <!-- Describe task in general -->
 
 <p>
-    Crée et renvoie un nouveau tableau {% if is_js %} <span>(array)</span> {% else %} Iterable{% endif %} qui contient les mêmes éléments que l'argument {% if is_js %}array{% else %} list{% endif %} <b class="code">items</b> , mais avec l'ordre inversé des éléments à l'intérieur de chaque sous-séquence maximale strictement ascendante.
-    Cette fonction ne doit pas modifier le contenu du tableau original {% if is_js %} <span>(array)</span> {% else %} list{% endif %}.
+    Crée et renvoie un nouveau {% if is_js %}tableau <span>(array)</span>{% else %}Iterable{% endif %} qui contient les mêmes éléments que l'argument {% if is_js %}tableau <span>(array)</span>{% else %}liste <span>(list)</span>{% endif %} <b class="code">items</b>, mais avec l'ordre inversé des éléments à l'intérieur de chaque sous-séquence maximale strictement ascendante.
+    Cette fonction ne doit pas modifier le contenu du original {% if is_js %}tableau <span>(array)</span>{% else %}liste <span>(list)</span>{% endif %}.
 </p>
 
 
 <!-- Explain input and output values -->
 <p>
-   <strong>Entrée:</strong> {% if is_js %}Tableau <span>(Array)</span> de nombres <span>(numbers)</span>{% else %} Liste <span>(List)</span> d'entiers <span>(integers)</span>{% endif %}.
+   <strong>Entrée:</strong> {% if is_js %}Tableau <span>(array)</span> de nombres <span>(numbers)</span>{% else %}Liste <span>(list)</span> d'entiers <span>(integers)</span>{% endif %}.
 </p>
 
 <p>
-   <strong>Sortie:</strong> {% if is_js %}Tableau <span>(Array)</span> de nombres <span>(numbers)</span>{% else %} Liste <span>(List)</span> ou autre Iterable (tuple, iterator, generator) d'entiers <span>(integers)</span>{% endif %}.
+   <strong>Sortie:</strong> {% if is_js %}Tableau <span>(array)</span> de nombres <span>(numbers)</span>{% else %}Liste <span>(list)</span> ou autre Iterable (tuple, iterator, generator) d'entiers <span>(integers)</span>{% endif %}.
 </p>
 
 
