@@ -5,10 +5,7 @@
     </div>
     <div class="answer">
         <p>
-            💡 The general idea of solution I offer you is to iterate over the initial
-            list and insert each value in the right place of new list - at the 
-            beginning of current strictly ascending subsequence or at the end of the
-            whole list to start the next subsequence.
+            💡 The general idea of solution I offer you is to iterate over the initial list and insert each value in the right place of new list - at the beginning of current strictly ascending subsequence or at the end of the whole list to start the next subsequence.
         </p>
     </div>
 </div>
@@ -20,11 +17,7 @@
     </div>
     <div class="answer">
         <p>
-            Let's declare a variable <b class="code">result</b> with the initial
-            value of empty list - this list you are going to fill with values and
-            return at the end. Later you will also need a variable <b class="code">point</b>
-            - the index of <b class="code">result</b>, where you will put your values. Although type hint is not obligatory,
-            let's add it for the variable this time.
+            Let's declare a variable <b class="code">result</b> with the initial value of empty list - this list you are going to fill with values and return at the end. Later you will also need a variable <b class="code">point</b> - the index of <b class="code">result</b>, where you will put your values. Although type hint is not obligatory, let's add it for the variable this time.
         </p>
         <pre class="brush: python">
 result: list[int] = []
@@ -34,7 +27,7 @@ result: list[int] = []
 <div class="question-answer">
     <div class="question">
         <p>
-            Let's get closer to business!) What to do next?
+            Let's get closer to business! What to do next?
         </p>
     </div>
     <div class="answer">
@@ -52,8 +45,7 @@ for elem in items:
 <div class="question-answer">
     <div class="question">
         <p>
-            How to define the value of <b class="code">point</b> - 
-            where I should correctly insert each <b class="code">elem</b>?
+            How to define the value of <b class="code">point</b> - where I should correctly insert each <b class="code">elem</b>?
         </p>
     </div>
     <div class="answer">
@@ -177,9 +169,7 @@ def reverse_ascending(items: list[int]) -> Iterable[int]:
     return result+last[::-1]    
         </pre>
         </div>
-        <p><b>
-            Click "Best solutions" at mission menu and see a lot of other interesting solutions!
-        </b></p>
+        <p>Click <b>Best solutions</b> at mission menu and see a lot of other interesting solutions!</p>
     </div>
 </div>
 <div class="question-answer">
