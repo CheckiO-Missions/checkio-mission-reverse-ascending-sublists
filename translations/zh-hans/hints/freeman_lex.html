@@ -1,0 +1,187 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>我不知道如何开始解决这项任务。</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 我给您提供的解决方案的总体思路是迭代初始列表，并将每个值插入新列表的正确位置 - 当前严格升序子序列的开头或整个列表的结尾，以开始下一个子序列。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            听起来很有趣。我应该从哪里开始呢？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            让我们声明一个初始值为空列表的变量<b class="code">result</b> - 这个列表将被填入值并在最后返回。稍后，你还需要一个变量<b class="code">point</b> -<b class="code">result</b> 的索引，你将在这里放置你的值。虽然类型提示不是必须的，但这次我们还是要为变量添加类型提示。
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            让我们更接近业务！下一步做什么？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a> 遍历初始列表。在循环内部插入初始列表的当前元素，索引为<b class="code">point</b> ，我之前告诉过你提示。
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    ...
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            如何定义<b class="code">point</b> 的值 - 我应该正确插入每个<b class="code">elem</b> 的位置？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            这一步需要解释一下。因为您的每个升序
+            应该是相反的，您应该在相同的<b class="code">elem</b>
+            在相同的位置<b class="code">point</b> - 当前子序列的第一个索引。这在代码中已经表达。
+        </p>
+        <pre class="brush: python">
+result.insert(point, elem)        
+        </pre>
+        <p>
+            例如，如果您的初始列表是<b class="code">[1, 2, 3]</b>,<b class="code">result</b> 是空的，那么<b class="code">point</b> 就是<b class="code">0</b> 。算法将执行以下操作。
+        </p>
+        <pre>
+indexes  0  1  2
+steps
+1       [1]
+2       [2, 1]
+3       [3, 2, 1] 
+        </pre>
+        <p>
+            如果当前子序列结束（当前<b class="code">elem</b> 不大于当前子序列的第一个 (<b class="code">point</b>) 元素），则需要更改<b class="code">point</b> 的值。在这种情况下，新的子序列从整个列表的末尾开始（插入当前的<b class="code">elem</b> 作为列表的最后一个元素），并将新子序列中较大的<b class="code">elem</b> 插入新的<b class="code">point</b> 中。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            在代码中如何写？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            简而言之，如果当前的<b class="code">elem</b> 没有大于<b class="code">point</b> 元素（或者<b class="code">result</b> 为空），则将<b class="code">point</b> 设为列表的末尾。
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    if not result or elem <= result[point]:
+        point = len(result)
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            那么，我的最终解决方案应该是怎样的呢？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            您只需将代码封装在函数表达式中并返回<b class="code">result</b> 。
+        </p>
+        <p>下面是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result: list[int] = []
+    for elem in items:
+        if not result or elem <= result[point]:
+            point = len(result)
+        result.insert(point, elem)
+
+    return result
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            告诉我更多的解决方案！<br />
+            因为我想成为一个真正的 🥇 Python Ninnjaa！
+    </p>
+    </div>
+    <div class="answer">
+        <p>当然，抓住它！</p>
+        <p>
+            由于函数可以返回任何<b class="code">Iterable</b> ，这里是生成器。
+            元素被添加到<b class="code">buffer</b> ，直到序列保持升序，然后它们从反转的<b class="code">buffer</b> 中产生。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    buffer = []
+    for i, el in enumerate(items):
+        buffer.append(el)
+        if i == len(items)-1 or el>= items[i + 1]:
+            yield from reversed(buffer)
+            buffer = []
+        </pre>
+        </div>
+        <p>
+            这个有趣的解决方案使用顺序方向检查作为 "切换器"。
+            这个有趣的解决方案使用顺序方向检查作为 "切换器"，即向<b class="code">result</b> 列表中添加元素（如果顺序变为降序，缓冲区序列将被添加到<b class="code">result</b> ），并清除缓冲区序列--如果顺序变为降序，缓冲区序列将被清除。
+            变为降序，则清空缓冲区并添加当前元素。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result, last = [], [data[0]] if data else []
+    for i in data[1:]:
+        is_ascending = i> last[-1]
+        result += last[::-1]*(not is_ascending)
+        last = last*is_ascending+[i]
+
+    return result+last[::-1]    
+        </pre>
+        </div>
+        <p>点击任务菜单中的<b>Best Solutions</b> ，可以看到很多其他有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            谢谢！我现在知道并理解得更多了！一切正常！
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            很高兴听到这个消息！
+        </p>
+    </div>
+</div>
+</body>
