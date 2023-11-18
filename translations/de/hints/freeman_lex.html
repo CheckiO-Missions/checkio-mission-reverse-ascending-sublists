@@ -1,0 +1,187 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.</p>
+    </div>
+    <div class="answer">
+        <p>
+            die allgemeine Idee der Lösung, die ich Ihnen anbiete, besteht darin, über die ursprüngliche Liste zu iterieren und jeden Wert an der richtigen Stelle der neuen Liste einzufügen - am Anfang der aktuellen streng aufsteigenden Teilsequenz oder am Ende der gesamten Liste, um die nächste Teilsequenz zu beginnen.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Klingt interessant. Womit soll ich beginnen?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Lassen Sie uns eine Variable <b class="code">result</b> mit dem Anfangswert empty list deklarieren - diese Liste werden Sie mit Werten füllen und am Ende zurückgeben. Später benötigen Sie auch eine Variable <b class="code">point</b> - den Index von <b class="code">result</b>, in dem Sie Ihre Werte ablegen werden. Obwohl der Typ-Hinweis nicht obligatorisch ist, fügen wir ihn dieses Mal für die Variable hinzu.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Kommen wir der Sache näher! Was ist als nächstes zu tun?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Iterieren Sie über die ursprüngliche Liste mit <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>. Fügen Sie innerhalb der Schleife das aktuelle Element der ursprünglichen Liste unter dem Index <b class="code">point</b> ein, wie ich es Ihnen zuvor erklärt habe.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    ...
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie kann ich den Wert von <b class="code">point</b> definieren - wo soll ich jedes <b class="code">elem</b> korrekt einfügen?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Dieser Schritt bedarf einiger Erklärung. Da jede Ihrer aufsteigenden Sequenzen
+            umgedreht werden soll, fügen Sie jeden größeren <b class="code">elem</b>
+            an derselben Position <b class="code">point</b> ein - dem allerersten Index der aktuellen Teilsequenz. Dies ist bereits im Code ausgedrückt.
+        </p>
+        <pre class="brush: python">
+result.insert(point, elem)        
+        </pre>
+        <p>
+            Wenn Ihre anfängliche Liste zum Beispiel <b class="code">[1, 2, 3]</b> lautet, ist <b class="code">result</b> leer, also ist <b class="code">point</b> <b class="code">0</b> . Der Algorithmus geht folgendermaßen vor.
+        </p>
+        <pre>
+indexes  0  1  2
+steps
+1       [1]
+2       [2, 1]
+3       [3, 2, 1] 
+        </pre>
+        <p>
+            Sie müssen den Wert von <b class="code">point</b> ändern, wenn die aktuelle Teilsequenz endet (das aktuelle <b class="code">elem</b> ist nicht größer als das erste (<b class="code">point</b>) Element der aktuellen Teilsequenz). In diesem Fall beginnen Sie die neue Teilfolge am Ende der gesamten Liste (fügen Sie das aktuelle <b class="code">elem</b> als letztes Element der Liste ein) und fügen das größere <b class="code">elem</b> der neuen Teilfolge in das neue <b class="code">point</b> ein.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie schreibe ich das in Code?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Nochmals kurz gesagt: Wenn das aktuelle <b class="code">elem</b> nicht größer ist als das Element <b class="code">point</b> (oder das <b class="code">result</b> leer ist), setzen Sie das <b class="code">point</b> an das Ende der Liste.
+        </p>
+        <pre class="brush: python">
+result: list[int] = []
+for elem in items:
+    if not result or elem <= result[point]:
+        point = len(result)
+    result.insert(point, elem)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie sollte also meine endgültige Lösung aussehen?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen Ihren Code nur in einen Funktionsausdruck verpacken und <b class="code">result</b> zurückgeben.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result: list[int] = []
+    for elem in items:
+        if not result or elem <= result[point]:
+            point = len(result)
+        result.insert(point, elem)
+
+    return result
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Zeigen Sie mir mehr Lösungen!<br />
+            denn ich will ein echter 🥇 Python Ninnjaa sein!
+    </p>
+    </div>
+    <div class="answer">
+        <p>Klar, schnapp sie dir!</p>
+        <p>
+            Da die Funktion eine beliebige <b class="code">Iterable</b> zurückgeben kann, ist hier der Generator.
+            Die Elemente werden in <b class="code">buffer</b> eingefügt, bis die Reihenfolge aufsteigend ist, dann ergeben sie sich aus der umgekehrten <b class="code">buffer</b>.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    buffer = []
+    for i, el in enumerate(items):
+        buffer.append(el)
+        if i == len(items)-1 or el>= items[i + 1]:
+            yield from reversed(buffer)
+            buffer = []
+        </pre>
+        </div>
+        <p>
+            Diese interessante Lösung verwendet die Überprüfung der Reihenfolge als "Umschalter"
+            des Hinzufügens zur Liste <b class="code">result</b> (wenn die Reihenfolge absteigend wird, wird die Pufferfolge zu <b class="code">result</b> hinzugefügt) und des Löschens der Pufferfolge - wenn die Reihenfolge
+            absteigend wird, wird der Puffer geleert und das aktuelle Element hinzugefügt.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from collections.abc import Iterable
+
+
+def reverse_ascending(items: list[int]) -> Iterable[int]:
+
+    result, last = [], [data[0]] if data else []
+    for i in data[1:]:
+        is_ascending = i> last[-1]
+        result += last[::-1]*(not is_ascending)
+        last = last*is_ascending+[i]
+
+    return result+last[::-1]    
+        </pre>
+        </div>
+        <p>Klicken Sie im Missionsmenü auf <b>Best Solutions</b> und sehen Sie sich eine Reihe weiterer interessanter Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            👍 Freut mich zu hören!
+        </p>
+    </div>
+</div>
+</body>
